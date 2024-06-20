@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import {
@@ -7,19 +6,20 @@ import {
   filteredDataSelector,
 } from "@redux/index";
 import Search from "@components/Search";
+import { dataFetchRequest } from "@redux/index";
 
 function App() {
   const dispatch = useAppDispatch();
   const { filteredTodos, filteredPosts, filteredUsers } =
     useSelector(filteredDataSelector);
 
-  useEffect(() => {
-    dispatch(dataFetchThunk());
-  }, []);
-
   return (
     <>
-      <Search></Search>
+      <Search />
+      <div style={{ display: "flex" }}>
+        <button onClick={() => dispatch(dataFetchThunk())}>Redux Thunk</button>
+        <button onClick={() => dispatch(dataFetchRequest())}>Redux Saga</button>
+      </div>
       <div style={{ display: "flex" }}>
         <div>
           TODOS:

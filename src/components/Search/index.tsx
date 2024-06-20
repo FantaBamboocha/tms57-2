@@ -1,8 +1,7 @@
 import { FC, useState, useCallback } from "react";
 import debounce from "lodash.debounce";
 
-import { useAppDispatch } from "@redux/index";
-import { setSearchValue, clearSearchValue } from "@redux/index";
+import { useAppDispatch, setSearchValue, clearSearchValue } from "@redux/index";
 
 const Search: FC = () => {
   const [localSearchValue, setLocalSearchValue] = useState("");
