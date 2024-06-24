@@ -1,52 +1,14 @@
-import { useSelector } from "react-redux";
+import { Container } from "@mui/material";
 
-import {
-  useAppDispatch,
-  dataFetchThunk,
-  filteredDataSelector,
-} from "@redux/index";
 import Search from "@components/Search";
-import { dataFetchRequest } from "@redux/index";
+import ContentBlock from "@components/ContentBlock";
 
 function App() {
-  const dispatch = useAppDispatch();
-  const { filteredTodos, filteredPosts, filteredUsers } =
-    useSelector(filteredDataSelector);
-
   return (
-    <>
+    <Container sx={{ background: "#dbdbd9" }}>
       <Search />
-      <div style={{ display: "flex" }}>
-        <button onClick={() => dispatch(dataFetchThunk())}>Redux Thunk</button>
-        <button onClick={() => dispatch(dataFetchRequest())}>Redux Saga</button>
-      </div>
-      <div style={{ display: "flex" }}>
-        <div>
-          TODOS:
-          <ul>
-            {filteredTodos.map((todo) => (
-              <li>{todo.title}</li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          POSTS:
-          <ul>
-            {filteredPosts.map((post) => (
-              <li>{post.title}</li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          USERS:
-          <ul>
-            {filteredUsers.map((user) => (
-              <li>{user.name}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </>
+      <ContentBlock />
+    </Container>
   );
 }
 

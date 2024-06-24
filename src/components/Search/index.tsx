@@ -1,11 +1,16 @@
 import { FC, useState, useCallback } from "react";
+import { Box, TextField } from "@mui/material";
 import debounce from "lodash.debounce";
 
 import { useAppDispatch, setSearchValue, clearSearchValue } from "@redux/index";
+import { useInputProps } from "./useInputProps";
+import { useStyles } from "./styles";
 
 const Search: FC = () => {
   const [localSearchValue, setLocalSearchValue] = useState("");
   const dispatch = useAppDispatch();
+
+  const styles = useStyles();
 
   const handleReduxChange = useCallback(
     debounce((value: string) => {
@@ -21,19 +26,22 @@ const Search: FC = () => {
     handleReduxChange(value);
   };
 
-  // const handleClear = () => {
-  //   setLocalSearchValue("");
-  //   dispatch(clearSearchValue());
-  // };
+  const handleClear = () => {
+    setLocalSearchValue("");
+    dispatch(clearSearchValue());
+  };
+
+  const inputProps = useInputProps(localSearchValue, handleClear);
   return (
-    <div>
-      <input
+    <Box sx={styles.wrapper}>
+      <TextField
         type="text"
         placeholder="Search..."
         value={localSearchValue}
         onChange={handleInputChange}
+        InputProps={inputProps}
       />
-    </div>
+    </Box>
   );
 };
 
