@@ -9,6 +9,7 @@ export default defineConfig({
       "@components": "/src/components",
       "@redux": "/src/redux",
       "@api": "/src/api",
+      "@utils": "/src/utils",
     },
   },
 });
